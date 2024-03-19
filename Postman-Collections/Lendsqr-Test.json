@@ -31,7 +31,28 @@
 					"response": []
 				},
 				{
-					"name": "Create Copy",
+					"name": "Empty Name Field - Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1776433-4d73-42c0-b035-31a82afaa77d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"pm.test(\"Verify that response returns error message\", function () {\r",
+									"    pm.response.to.have.body(\"Name is required\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "9adfe0d2-5bb6-41f0-8a8a-fcee090f1e9f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -41,7 +62,50 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"name\" : \"morpheus\",\r\n\"job\" : \"leader\"\r\n\r\n}",
+							"raw": "{\r\n\"name\" : \"\",\r\n\"job\" : \"leader\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://reqres.in/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Empty Job Field - Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1776433-4d73-42c0-b035-31a82afaa77d",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"Status code name has string\", function () {\r",
+									"    pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"pm.test(\"Verify that response returns error message\", function () {\r",
+									"    pm.response.to.have.body(\"Name is job\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "990211d9-3fac-444b-908c-827a3370c002",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\" : \"\",\r\n\"job\" : \"leader\"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
