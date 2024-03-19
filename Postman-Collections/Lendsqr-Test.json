@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "9d3e2b4e-3122-48db-abbb-ad8babf8a431",
+		"name": "Lendsqr Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"item": [
+				{
+					"name": "Create",
+					"id": "915acb69-ff98-4ccb-8561-2d20fa15f31b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\" : \"morpheus\",\r\n\"job\" : \"leader\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://reqres.in/api/users"
+					},
+					"response": []
+				}
+			],
+			"id": "70a5507c-ffec-45f7-baa1-bc3052e5faa4"
+		},
+		{
+			"name": "List single user",
+			"item": [
+				{
+					"name": "List single User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da6d6e7b-a855-483f-8449-e0356c594447",
+								"exec": [
+									"pm.test(\"Status is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status to be either 200 or 201\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time to be less than 100\", () => {\r",
+									"    pm.expect(pm.response.time).to.be <(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has string\", ()=> {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header has Content-Type\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header has content-type nad value\", ()=> {\r",
+									"    pm.expect(pm.response.headers.get(\"content-type\")).to.be.equal(\"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header has content-type with value application/json\", ()=> {\r",
+									"    pm.expect(pm.response.headers.get(\"X-powered-by\")).to.be.equal(\"Express\");\r",
+									"});\r",
+									"//\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "c62a6703-fe99-4196-8025-34eb246eeac5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://reqres.in/api/users/2"
+					},
+					"response": []
+				}
+			],
+			"id": "0ff04e8a-81b5-473d-bdf8-0f467c83a0af"
+		},
+		{
+			"name": "Update",
+			"item": [
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff4baba9-d76b-4396-aad1-7ebaff23b77e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Status code name has 'OK''\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"pm.test(\"Verify that name is returned\", function () {\r",
+									"    pm.expect(pm.response.text()).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"Verify that job is returned\", function () {\r",
+									"    pm.expect(pm.response.text()).to.be.a(\"string\");\r",
+									"});\r",
+									"pm.test(\"Verify that updatedAt is returned\", function () {\r",
+									"    pm.expect(pm.response.text()).to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "e7cf902b-27e8-4224-ae3c-fdee85f4ff61",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"job\": \"managing director\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://reqres.in/api/users/2"
+					},
+					"response": []
+				}
+			],
+			"id": "86978738-99ef-4b49-b734-1c3e68cb7712"
+		}
+	]
+}
