@@ -59,7 +59,7 @@ jobs:
             # Debug output to check the content before and after the sed command
             cat "$summary_path"  # Print content before
             # Use sed to update the content within the <h2> element
-            sudo sed -i 's/Allure Report/Business Owner - API Quality Readiness/' "$summary_path"
+            sudo sed -i 's/Allure Report/Lendsqr-Test - API Quality Readiness/' "$summary_path"
             cat "$summary_path"  # Print content after
           else
             echo "Error: summary.json not found in the latest folder."
